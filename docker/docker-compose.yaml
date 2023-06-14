@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  myapp:
+    build: .
+    container_name: myapp
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./html:/usr/share/nginx/html
+
   mysql:
     image: mysql:8
     container_name: mysql
@@ -10,5 +19,16 @@ services:
       - MYSQL_DATABASE=fullcycle
     ports:
       - 3307:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3.8.25-management-alpine
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
 
 # docker compose up -d
+# docker compose down
