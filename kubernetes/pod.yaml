@@ -11,3 +11,11 @@ spec:
     ports:
       - containerPort: 80
 
+### Criar o pod
+# kubectl apply -f .\pod.yaml 
+
+### Verificar pods rodando
+# kubectl get pods
+
+### Deletar pod pelo nome
+# kubectl delete pod nginx
