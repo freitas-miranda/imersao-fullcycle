@@ -3,17 +3,15 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
-  - port: 80
+  - port: 8088
     targetPort: 80
 
-### Criar o Service
-# kubectl apply -f service.yaml
-
-### Acessar a porta de um Service
-# kubectl port-forward svc/nginx-service 8080:80
+### Criar um Load Balancer
+# kubectl apply -f load-balancer.yaml
 
 ### Listar
 # kubectl get svc
