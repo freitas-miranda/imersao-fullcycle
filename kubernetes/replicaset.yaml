@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+          - containerPort: 80
+
+### Criar o ReplicaSet
+# kubectl apply -f replicaset.yaml
+
+### Escalar a aplicação com 10 Pods
+# kubectl scale replicaset redis-replicaset --replicas=10
