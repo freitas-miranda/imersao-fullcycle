@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+
+### Criar o Service (Load Balancer)
+# kubectl apply -f service.yaml
+
+### Acessar a porta de um Service
+# kubectl port-forward svc/nginx-service 8080:80
+
+### Listar
+# kubectl get svc
+# kubectl get deployment
+# kubectl get rs
+# kubectl get pods
