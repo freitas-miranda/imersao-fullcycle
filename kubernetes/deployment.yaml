@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        #image: freitasmiranda/mynginx:latest
+        ports:
+          - containerPort: 80
+
+### Criar o Deployment
+# kubectl apply -f deployment.yaml
+
+### Listar os Deployments, ReplicaSet e Pods
+# kubectl get deployment
+# kubectl get rs
+# kubectl get pods
+

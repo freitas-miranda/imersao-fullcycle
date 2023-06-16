@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata: 
-  name: nginx
+  name: nginx-replicaset
 spec:
+  replicas: 4
   selector:
     matchLabels:
       app: nginx
   template:
     metadata:
-      name: nginx
       labels:
-        name: nginx
+        app: nginx
     spec:
       containers:
       - name: nginx
@@ -21,5 +21,11 @@ spec:
 ### Criar o ReplicaSet
 # kubectl apply -f replicaset.yaml
 
-### Escalar a aplicação com 10 Pods
-# kubectl scale replicaset redis-replicaset --replicas=10
+### Listar os ReplicaSet
+# kubectl get rs
+
+### Deletar os ReplicaSet
+# kubectl delete rs nginx-replicaset
+
+### Escalar a aplicação com 3 Pods
+# kubectl scale replicaset nginx-replicaset --replicas=3

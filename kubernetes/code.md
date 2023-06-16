@@ -25,3 +25,8 @@ kind create cluster --config=cluster-config.yml
 [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-arm64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
+
+# Acessar a porta de um Pod
+kubectl port-forward pod/nginx-replicaset-6tj86 8080:80
+
+
