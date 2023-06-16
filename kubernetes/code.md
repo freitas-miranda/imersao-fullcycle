@@ -30,3 +30,7 @@ sudo mv ./kind /usr/local/bin/kind
 kubectl port-forward pod/nginx-replicaset-6tj86 8080:80
 
 
+# Limpar tudo
+kubectl delete svc nginx-service
+kubectl delete deployment nginx-deployment
+kubectl delete rs nginx-replicaset
