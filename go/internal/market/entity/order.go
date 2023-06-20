@@ -14,17 +14,14 @@ type Order struct {
 
 func NewOrder(orderID string, investor *Investor, asset *Asset, shares int, price float64, orderType string) *Order {
 	return &Order{
-		ID:           orderID,
-		Investor:     investor,
-		Asset:        asset,
-		Shares:       shares,
-		Price:        price,
-		OrderType:    orderType,
-		Status:       "OPEN",
-		Transactions: []*Transaction{},
+		ID:            orderID,
+		Investor:      investor,
+		Asset:         asset,
+		Shares:        shares,
+		PendingShares: shares,
+		Price:         price,
+		OrderType:     orderType,
+		Status:        "OPEN",
+		Transactions:  []*Transaction{},
 	}
-}
-
-func (o *Order) AddTransaction(transaction *Transaction) {
-	o.Transactions = append(o.Transactions, transaction)
 }

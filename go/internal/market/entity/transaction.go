@@ -18,7 +18,6 @@ type Transaction struct {
 
 func NewTransaction(sellingOrder *Order, buyingOrder *Order, shares int, price float64) *Transaction {
 	total := float64(shares) * price
-
 	return &Transaction{
 		ID:           uuid.New().String(),
 		SellingOrder: sellingOrder,
@@ -31,14 +30,16 @@ func NewTransaction(sellingOrder *Order, buyingOrder *Order, shares int, price f
 }
 
 func (t *Transaction) CalculateTotal(shares int, price float64) {
-	t.Total = float64(shares) * price
+	t.Total = float64(t.Shares) * t.Price
 }
 
-func (t *Transaction) CloseOrders() {
+func (t *Transaction) CloseBuyOrder() {
 	if t.BuyingOrder.PendingShares == 0 {
 		t.BuyingOrder.Status = "CLOSED"
 	}
+}
 
+func (t *Transaction) CloseSellOrder() {
 	if t.SellingOrder.PendingShares == 0 {
 		t.SellingOrder.Status = "CLOSED"
 	}

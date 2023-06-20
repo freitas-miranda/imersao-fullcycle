@@ -32,7 +32,6 @@ func (i *Investor) GetAssetPosition(assetID string) *InvestorAssetPosition {
 			return assetPosition
 		}
 	}
-
 	return nil
 }
 

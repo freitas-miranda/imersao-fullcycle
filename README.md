@@ -1,11 +1,12 @@
 # Imersão Full Stack && Full Cycle 
 
 ## Tecnologias
-### - Docker
-### - Next.js
-### - Nest.js
-### - Apache Kafka
-### - GoLang
+- [x] Docker
+- [x] Next.js
+- [x] Nest.js
+- [x] Apache Kafka
+- [x] GoLang
+- [x] SSE (Server Sent Events)
 
 ---
 ## Fluxo de comunicação
@@ -15,10 +16,13 @@ sequenceDiagram
     participant HomeBroker
     participant NestJS
     participant Kafka
-    participant Microservices
+    participant MicroservicesEmGo
     User->>HomeBroker: React/Next.js
     HomeBroker->>NestJS: REST (Http request)
     NestJS->>HomeBroker: SSE (Service Sents Events)
-    NestJS->>Kafka: Processar transactions
-    Microservices->>Kafka: Receber e processar ordens
+    NestJS->>Kafka: Gerar ordens
+    Kafka->>NestJS: 
+    MicroservicesEmGo->>Kafka: Processar ordens e transações
+    Kafka->>MicroservicesEmGo: 
+
 ```
