@@ -17,12 +17,12 @@ sequenceDiagram
     participant NestJS
     participant Kafka
     participant MicroservicesEmGo
-    User->>HomeBroker: React/Next.js
-    HomeBroker->>NestJS: REST (Http request)
+    User->>HomeBroker: Negociação (React/Next.js)
+    HomeBroker->>NestJS: Compra/venda/consultas (REST)
+    NestJS->>Kafka: Publica ordens (compra/venda)
+    Kafka->>MicroservicesEmGo: Consome ordens (compra/venda)
+    MicroservicesEmGo->>Kafka: Publica matches das ordens
+    Kafka->>NestJS: Consome ordens processadas
     NestJS->>HomeBroker: SSE (Service Sents Events)
-    NestJS->>Kafka: Gerar ordens
-    Kafka->>NestJS: 
-    MicroservicesEmGo->>Kafka: Processar ordens e transações
-    Kafka->>MicroservicesEmGo: 
-
+    HomeBroker->>User: Recebe resposta da negociação 
 ```
