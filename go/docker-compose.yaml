@@ -1,9 +1,21 @@
 version: '3'
 services:
+  app:
+    image: golang:1.20.3-bullseye
+    command: tail -f /dev/null    
+    volumes:
+      - .:/go/src/app
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
+    networks:
+      - my-network      
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - my-network      
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -22,6 +34,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
+    networks:
+      - my-network      
        
   control-center:
     image: confluentinc/cp-enterprise-control-center:latest
@@ -34,3 +48,9 @@ services:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: 'kafka:9092'
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       PORT: 9021
+    networks:
+      - my-network      
+
+networks:
+  my-network:
+    external: true
