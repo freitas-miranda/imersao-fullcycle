@@ -1,25 +1,38 @@
-version: '3'
+version: '3.8'
 
 services:
-  db:
+  
+  mongo:
+    image: mongo
     container_name: mongodb
-    image: bitnami/mongodb:5.0.17
     ports:
       - 27017:27017
-    volumes:
-      - mongodb_data:/bitnami/mongodb
-    environment:
-      MONGODB_ROOT_PASSWORD: root
-      MONGODB_REPLICA_SET_MODE: primary
-      MONGODB_REPLICA_SET_KEY: 123456
-      MONGODB_DATABASE: nest
     networks:
       - my-network
+    volumes:
+      - mongodb_data:/data/db
 
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+    depends_on:
+      - mongo
+    networks:
+      - my-network      
+    volumes:
+      - mongo_express_data:/data/db           
+      
 volumes:
   mongodb_data:
     driver: local
-
+  mongo_express_data:
+    driver: local
+          
 networks:
   my-network:
     external: true
@@ -32,3 +45,9 @@ networks:
 # //Windows
 # C:\Windows\system32\drivers\etc\hosts (bloco de notas como administrador)
 # 127.0.0.1 host.docker.internal
+
+
+
+# docker compose up -d --no-deps --build
+# docker compose down --rmi all
+# docker-compose up --force-recreate -d
