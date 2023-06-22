@@ -1,41 +1,24 @@
-version: '3.8'
+version: '3'
 
 services:
   
-  mongo:
-    image: mongo
+  mongodb:
     container_name: mongodb
+    image: bitnami/mongodb:latest
     environment:
-      - MONGODB_ROOT_PASSWORD=root    
+      MONGODB_ROOT_PASSWORD: root
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_KEY: 123456
+      MONGODB_DATABASE: nest  
+    volumes:
+      - data:/bitnami/mongodb
     ports:
       - 27017:27017
     networks:
       - my-network
-    volumes:
-      - mongodb_data:/data/db
 
-
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_OPTIONS_EDITORTHEME="ambiance"
-      - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_BASICAUTH_USERNAME=root
-      - ME_CONFIG_BASICAUTH_PASSWORD=root      
-    depends_on:
-      - mongo
-    networks:
-      - my-network      
-    volumes:
-      - mongo_express_data:/data/db           
-      
 volumes:
-  mongodb_data:
-    driver: local
-  mongo_express_data:
+  data:
     driver: local
           
 networks:

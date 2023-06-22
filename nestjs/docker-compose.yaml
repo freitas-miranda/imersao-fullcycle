@@ -2,29 +2,13 @@ version: '3'
 
 services:
   app:
+    container_name: app-nestjs
     build: .
     ports:
       - 3000:3000
       - 5555:5555
     volumes:
       - .:/home/node/app
-    extra_hosts:
-      - 'host.docker.internal:172.17.0.1'
-      # não use docker desktop (linux) ou (windows)
-    networks:
-      - my-network
-
-  db:
-    image: bitnami/mongodb:5.0.17
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb_data:/bitnami/mongodb
-    environment:
-      MONGODB_ROOT_PASSWORD: root
-      MONGODB_REPLICA_SET_MODE: primary
-      MONGODB_REPLICA_SET_KEY: 123456
-      MONGODB_DATABASE: nest
     networks:
       - my-network
 
