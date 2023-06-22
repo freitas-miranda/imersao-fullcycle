@@ -5,6 +5,8 @@ services:
   mongo:
     image: mongo
     container_name: mongodb
+    environment:
+      - MONGODB_ROOT_PASSWORD=root    
     ports:
       - 27017:27017
     networks:
@@ -19,7 +21,10 @@ services:
     ports:
       - 8081:8081
     environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME="ambiance"
       - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=root
+      - ME_CONFIG_BASICAUTH_PASSWORD=root      
     depends_on:
       - mongo
     networks:
