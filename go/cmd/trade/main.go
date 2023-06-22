@@ -20,10 +20,12 @@ func main() {
 
 	kafkaMsgChan := make(chan *ckafka.Message)
 	configMap := &ckafka.ConfigMap{
-		"bootstrap.servers": "host.docker.internal:9094",
-		"group.id":          "myGroup",
-		"auto.offset.reset": "latest", // Pegar a partir do momento que subiu o sistema
-		// "auto.offset.reset": "earliest", // Buscar as imagens do começo
+		// "bootstrap.servers": "host.docker.internal:9094",
+		"bootstrap.servers": "kafka:9092",
+		// "bootstrap.servers": "172.22.0.3:9094",
+		"group.id": "myGroup",
+		// "auto.offset.reset": "latest", // Pegar a partir do momento que subiu o sistema
+		"auto.offset.reset": "earliest", // Buscar as imagens do começo
 	}
 	producer := kafka.NewKafkaProducer(configMap)
 	kafka := kafka.NewConsumer(configMap, []string{"input"})

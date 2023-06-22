@@ -2,8 +2,7 @@ version: '3'
 services:
   app:
     container_name: app-go
-    image: golang:1.20.3-bullseye
-    command: tail -f /dev/null    
+    build: .    
     volumes:
       - .:/go/src/app
     networks:
