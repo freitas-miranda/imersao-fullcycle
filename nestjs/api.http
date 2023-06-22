@@ -45,10 +45,22 @@ POST http://localhost:3000/wallets/wallet1/orders
 Content-Type: application/json
 
 {
-  "asset_id": "asset2",
+  "asset_id": "asset1",
   "shares": 5,
-  "price": 100,
+  "price": 101,
   "type": "SELL"
+}
+
+
+###
+POST http://localhost:3000/wallets/wallet2/orders
+Content-Type: application/json
+
+{
+  "asset_id": "asset1",
+  "shares": 5,
+  "price": 101,
+  "type": "BUY"
 }
 
 ###
@@ -57,8 +69,8 @@ Content-Type: application/json
 
 {
   "asset_id": "asset2",
-  "shares": 5,
-  "price": 100,
+  "shares": 216,
+  "price": 102,
   "type": "BUY"
 }
 
