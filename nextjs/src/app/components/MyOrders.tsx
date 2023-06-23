@@ -10,12 +10,14 @@ import {
   Badge,
 } from '../components/flowbite-components';
 
+import { isHomeBrokerClosed } from '../utils';
+
 async function getOrders(wallet_id: string): Promise<Order[]> {
   const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/orders`, {
-    //cache: 'no-store', processamento sempre dinamico
+    //cache: 'no-store', // processamento sempre dinamico
     next: {
-      //revalidate: isHomeBrokerClosed() ? 60 * 60 : 5,
-      // revalidate: 1,
+      //revalidate: isHomeBrokerClosed() ? 60 * 60 : 5, // Caso fechado, cache de uma hora, se não 5 segundos
+      revalidate: 1, // A cada um segundo
       tags: [`orders-wallet-${wallet_id}`],
     },
   });
@@ -27,7 +29,7 @@ export default async function MyOrders(props: { wallet_id: string }) {
   return (
     <div>
       <article className="format format-invert">
-        <h2>Minha ordens</h2>
+        <h2>Minhas ordens</h2>
       </article>
       <Table className="mt-2">
         <TableHead>

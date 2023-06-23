@@ -34,7 +34,6 @@ async function initTransaction(formData: FormData) {
 export function OrderForm(props: { asset_id: string; wallet_id: string; type: 'BUY' | 'SELL' }) {
   return (
     <div>
-      <h1>Order Form</h1>
       <form action={initTransaction}>
         <input name="asset_id" type="hidden" defaultValue={props.asset_id} />
         <input name="wallet_id" type="hidden" defaultValue={props.wallet_id} />
