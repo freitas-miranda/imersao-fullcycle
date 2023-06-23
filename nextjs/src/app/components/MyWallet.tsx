@@ -1,7 +1,9 @@
 import { Table, TableBody, TableHead, TableCell, TableHeadCell, TableRow } from '../components/flowbite-components';
 import { WalletAsset } from '../models';
 import Link from 'next/link';
+import { isHomeBrokerClosed } from '../utils';
 
+//Server Components
 async function getWalletAssets(wallet_id: string): Promise<WalletAsset[]> {
   const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/assets`, {
     //cache: 'no-store', // processamento sempre dinamico

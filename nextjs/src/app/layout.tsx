@@ -1,8 +1,6 @@
+import FlowbiteContext from './components/FlowbiteContex';
 import DefaultNavbar from './components/Navbar';
 import './globals.css';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body className="bg-gray-900 h-screen flex flex-col">
         <DefaultNavbar />
-        {children}
+        <FlowbiteContext>{children}</FlowbiteContext>
       </body>
     </html>
   );

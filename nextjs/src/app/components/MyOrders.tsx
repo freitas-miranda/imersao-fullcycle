@@ -1,5 +1,4 @@
 import { Order } from '../models';
-
 import {
   Table,
   TableBody,
@@ -12,6 +11,7 @@ import {
 
 import { isHomeBrokerClosed } from '../utils';
 
+//Server Components
 async function getOrders(wallet_id: string): Promise<Order[]> {
   const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/orders`, {
     //cache: 'no-store', // processamento sempre dinamico
@@ -24,6 +24,7 @@ async function getOrders(wallet_id: string): Promise<Order[]> {
   return response.json();
 }
 
+// 10 am - 17 18
 export default async function MyOrders(props: { wallet_id: string }) {
   const orders = await getOrders(props.wallet_id);
   return (

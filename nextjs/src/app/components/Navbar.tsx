@@ -13,7 +13,7 @@ export default function DefaultNavbar() {
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite-react.com">
         <Image className="mr-3 h-6 sm:h-9" alt="Full Cycle Invest" src="/logo.png" width={37} height={40} />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Miranda Invest</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">FullCycle Invest</span>
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
