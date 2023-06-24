@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+      - 5555:5555
+    volumes:
+      - .:/home/node/app
+    networks:
+      - my-net
+
+  mongodb:
+    container_name: mongodb
+    image: bitnami/mongodb:5.0.17
+    environment:
+      MONGODB_ROOT_PASSWORD: root
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_KEY: 123456
+      MONGODB_DATABASE: nest
+    volumes:
+      - data:/bitnami/mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - my-net
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  my-net:
+    external: true
