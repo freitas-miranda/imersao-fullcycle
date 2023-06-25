@@ -23,4 +23,5 @@ Content-Type: application/json
 {
   "asset_id": "asset1",
   "price": 101,
+  "status": "OPEN"
 }

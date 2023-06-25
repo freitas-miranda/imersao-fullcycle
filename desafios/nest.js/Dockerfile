@@ -6,6 +6,4 @@ RUN apt-get install -y openssl
 
 WORKDIR /home/node/app
 
-USER node
-
-CMD ["npm", "run", "dev"]
+CMD [ "tail", "-f", "/dev/null" ]

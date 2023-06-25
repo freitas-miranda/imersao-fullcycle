@@ -2,14 +2,18 @@ version: '3'
 
 services:
   app:
+    container_name: app-nest
     build: .
+    volumes:
+      - .:/home/node/app
+    command: >
+      bash -c "npx prisma generate
+      && npm run dev"
     ports:
       - 3000:3000
       - 5555:5555
-    volumes:
-      - .:/home/node/app
     networks:
-      - my-net
+      - my-network
 
   mongodb:
     container_name: mongodb
@@ -19,17 +23,11 @@ services:
       MONGODB_REPLICA_SET_MODE: primary
       MONGODB_REPLICA_SET_KEY: 123456
       MONGODB_DATABASE: nest
-    volumes:
-      - data:/bitnami/mongodb
     ports:
       - 27017:27017
     networks:
-      - my-net
-
-volumes:
-  data:
-    driver: local
+      - my-network
 
 networks:
-  my-net:
+  my-network:
     external: true
