@@ -23,3 +23,6 @@ npm install flowbite-typography --save-dev
 
 # adicionar biblioteca de gráficos (lightweight-charts)
 npm install lightweight-charts
+
+# adicionar biblioteca para chamadas http a partir do browser
+npm install swr

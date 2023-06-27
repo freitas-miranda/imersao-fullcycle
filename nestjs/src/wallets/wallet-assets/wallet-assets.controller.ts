@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  MessageEvent,
+  Param,
+  Post,
+  Sse,
+} from '@nestjs/common';
 import { WalletAssetsService } from './wallet-assets.service';
+import { Observable, map } from 'rxjs';
 
-// Nested endpoits
+// /wallets/
+
 @Controller('wallets/:wallet_id/assets')
 export class WalletAssetsController {
   constructor(private walletAssetsService: WalletAssetsService) {}
@@ -20,5 +30,15 @@ export class WalletAssetsController {
       wallet_id,
       ...body,
     });
+  }
+
+  @Sse('events')
+  events(@Param('wallet_id') wallet_id: string): Observable<MessageEvent> {
+    return this.walletAssetsService.subscribeEvents(wallet_id).pipe(
+      map((event) => ({
+        type: event.event,
+        data: event.data,
+      })),
+    );
   }
 }
