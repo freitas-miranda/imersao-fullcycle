@@ -13,7 +13,7 @@ import { isHomeBrokerClosed } from '../utils';
 
 //Server Components
 async function getOrders(wallet_id: string): Promise<Order[]> {
-  const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/orders`, {
+  const response = await fetch(`http://host.docker.internal:3000/wallets/${wallet_id}/orders`, {
     //cache: 'no-store', // processamento sempre dinamico
     next: {
       //revalidate: isHomeBrokerClosed() ? 60 * 60 : 5, // Caso fechado, cache de uma hora, se não 5 segundos

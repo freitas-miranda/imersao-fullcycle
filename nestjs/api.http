@@ -8,7 +8,7 @@ POST http://localhost:3000/assets
 Content-Type: application/json
 
 {
-  "id": "asset2",
+  "id": "asset1",
   "symbol": "A1",
   "price": 100
 }
@@ -22,7 +22,7 @@ POST http://localhost:3000/wallets
 Content-Type: application/json
 
 {
-  "id": "wallet1"
+  "id": "wallet2"
 }
 
 ###
@@ -82,7 +82,7 @@ POST http://localhost:3000/wallets/wallet1/orders/execute
 Content-Type: application/json
 
 {
-  "order_id": "6494aa1c4041318743f212f5",
+  "order_id": "649a2b78ecae42121ebb2157",
   "status": "CLOSED",
   "related_investor_id": "xxxx",
   "broker_transaction_id": "xxxx",
